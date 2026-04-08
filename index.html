@@ -126,6 +126,51 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
 .canadiens-accent { border-left-color: #af1e2d; }
 .vikings-accent { border-left-color: #90a4ae; }
 .ducks-accent { border-left-color: #00685e; }
+  /* BARRE DE FILTRES MODERNE */
+.schedule-controls {
+    display: flex;
+    gap: 20px;
+    background: rgba(15, 47, 71, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(79, 195, 247, 0.2);
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.control-group label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.schedule-controls select, 
+.schedule-controls input {
+    background: #0b1e2d;
+    border: 1px solid rgba(79, 195, 247, 0.4);
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Montserrat';
+    outline: none;
+    transition: 0.3s;
+}
+
+.schedule-controls select:focus, 
+.schedule-controls input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
+}  
+</section>
 </style>
 </head>
 
@@ -209,51 +254,7 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
     </div>
 </section>
 
-/* BARRE DE FILTRES MODERNE */
-.schedule-controls {
-    display: flex;
-    gap: 20px;
-    background: rgba(15, 47, 71, 0.5);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(79, 195, 247, 0.2);
-    align-items: center;
-}
 
-.control-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.control-group label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--blue);
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.schedule-controls select, 
-.schedule-controls input {
-    background: #0b1e2d;
-    border: 1px solid rgba(79, 195, 247, 0.4);
-    color: white;
-    padding: 12px;
-    border-radius: 6px;
-    font-family: 'Montserrat';
-    outline: none;
-    transition: 0.3s;
-}
-
-.schedule-controls select:focus, 
-.schedule-controls input:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
-}  
-</section>
 </section>
 
 <section id="standings">
@@ -403,33 +404,7 @@ function closeModal(){document.getElementById('playerModal').style.display='none
 
 function toggleMenu(){const m=document.getElementById('accountMenu');m.style.display=m.style.display==='block'?'none':'block';}
 
-  function filterSchedule() {
-    const team = document.getElementById('teamFilter').value;
-    const dateInput = document.getElementById('dateFilter').value;
-    const cards = document.querySelectorAll('.match-card');
-
-    cards.forEach(card => {
-        let showTeam = team === 'all' || card.innerText.includes(team);
-        let showDate = true;
-
-        if (dateInput) {
-            // On récupère le jour et le mois de la carte
-            const day = card.querySelector('.date-day').innerText;
-            const month = card.querySelector('.date-month').innerText.toLowerCase();
-            
-            // On transforme l'input date (AAAA-MM-JJ) pour comparer
-            const selectedDate = new Date(dateInput);
-            const selectedDay = selectedDate.getDate().toString();
-            // Note: mois en FR simplifié pour l'exemple
-            const monthsFR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-            const selectedMonth = monthsFR[selectedDate.getMonth()];
-
-            showDate = (day === selectedDay && month === selectedMonth);
-        }
-
-        card.style.display = (showTeam && showDate) ? 'grid' : 'none';
-    });
-}
+  
 function filterSchedule() {
     const team = document.getElementById('teamFilter').value;
     const dateInput = document.getElementById('dateFilter').value;
