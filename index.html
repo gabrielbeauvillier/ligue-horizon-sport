@@ -126,6 +126,33 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
 .canadiens-accent { border-left-color: #af1e2d; }
 .vikings-accent { border-left-color: #90a4ae; }
 .ducks-accent { border-left-color: #00685e; }
+  /* DESIGN DES FILTRES DYNAMO */
+.schedule-controls select, 
+.schedule-controls input {
+    background: #0b1e2d; /* Fond sombre assorti */
+    border: 1px solid rgba(79, 195, 247, 0.4);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif; /* TA NOUVELLE POLICE */
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.schedule-controls select option {
+    background: #0f2f47; /* Couleur du menu déroulant */
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.schedule-controls select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
+}
   /* BARRE DE FILTRES MODERNE */
 .schedule-controls {
     display: flex;
