@@ -280,23 +280,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   <h2>Calendrier & Résultats</h2>
 
 <div class="schedule-controls">
-    <div class="control-group">
-        <label>Équipe</label>
-        <select id="teamFilter" onchange="filterSchedule()">
-            <option value="all">Toutes les équipes</option>
-            <option value="Thrashers">Thrashers</option>
-            <option value="Canadiens">Canadiens</option>
-            <option value="Vikings">Vikings</option>
-            <option value="Ducks">Ducks</option>
-        </select>
+        <div class="control-group">
+            <label>Équipe</label>
+            <select id="teamFilter" onchange="filterSchedule()">
+                <option value="all">Toutes les équipes</option>
+                <option value="Thrashers">Thrashers</option>
+                <option value="Canadiens">Canadiens</option>
+                <option value="Vikings">Vikings</option>
+                <option value="Ducks">Ducks</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>Date précise</label>
+            <input type="date" id="dateFilter" onchange="filterSchedule()">
+        </div>
     </div>
-    <div class="control-group">
-        <label>Date précise</label>
-        <input type="date" id="dateFilter" onchange="filterSchedule()">
-    </div>
-</div>
 
-<div class="calendar-container" id="calendarContainer">
+    <div class="calendar-container" id="calendarContainer">
 
       <div class="team-info"><span>Thrashers</span></div>
       <div class="score-box">5 - 2</div>
