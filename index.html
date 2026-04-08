@@ -61,76 +61,47 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
     margin-top: 20px;
 }
 
+/* DESIGN CALENDRIER ÉLITE */
 .match-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 5px solid var(--blue);
-    border-radius: 8px;
     display: grid;
-    grid-template-columns: 1fr 100px 1fr 120px;
+    grid-template-columns: 80px 1fr 80px 1fr 130px; /* Ajout d'une colonne pour la date */
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.07) 100%);
+    border-left: 4px solid var(--blue);
+    margin-bottom: 12px;
     align-items: center;
-    padding: 15px 25px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(79, 195, 247, 0.1);
+    padding: 12px 20px;
 }
 
-.match-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.team-info {
+/* Pastille de Date */
+.match-date-badge {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
-    font-weight: 600;
-    font-size: 18px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    margin-right: 15px;
+    line-height: 1;
 }
+.date-day { font-size: 18px; font-weight: 800; color: var(--blue); }
+.date-month { font-size: 10px; text-transform: uppercase; opacity: 0.7; }
 
-.team-logo {
-    width: 45px;
-    height: 45px;
-    background: #16394a;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--blue);
-}
-
-.vs-badge {
+/* Score et Résultat */
+.score-box {
+    background: #0f2f47;
+    padding: 4px 10px;
+    border-radius: 4px;
     font-family: 'Bebas Neue';
-    background: var(--silver);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 20px;
+    font-size: 22px;
+    color: white;
+    min-width: 50px;
     text-align: center;
+    border: 1px solid rgba(79, 195, 247, 0.3);
 }
+.winner { color: #4caf50; border-color: #4caf50; } /* Vert pour la victoire */
 
-.match-status {
-    text-align: right;
-    border-left: 1px solid rgba(255,255,255,0.1);
-    padding-left: 15px;
-}
-
-.time {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--blue);
-}
-
-.location {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    opacity: 0.6;
-    letter-spacing: 1px;
-}
-.match-time {
-  font-size: 14px;
-  opacity: 0.8;
-}
+/* Couleurs par Équipe (Optionnel) */
+.thrashers-accent { border-left-color: #e65100; } /* Orange */
+.canadiens-accent { border-left-color: #af1e2d; } /* Rouge */
+.ducks-accent { border-left-color: #00685e; }     /* Vert forêt */
   th.rank-col, td.rank-data {
     width: 40px;
     text-align: center;
@@ -213,81 +184,44 @@ td {
 </section>
 
 <section id="schedule">
-  <h2>Calendrier des Matchs</h2>
-  
-  <div style="margin-bottom: 20px;">
-    <label>Filtrer par équipe :</label>
-    <select id="teamFilter">
-      <option value="all">Tous les matchs</option>
-      <option value="Thrashers">Thrashers</option>
-      <option value="Ducks">Ducks</option>
-      <option value="Vikings">Vikings</option>
-      <option value="Canadiens">Canadiens</option>
-    </select>
-  </div>
+  <h2>Calendrier & Résultats</h2>
 
   <div class="calendar-container">
     
-    <div class="match-card">
+    <div class="match-card thrashers-accent">
+      <div class="match-date-badge">
+        <span class="date-day">15</span>
+        <span class="date-month">Mai</span>
+      </div>
       <div class="team-info">
         <div class="team-logo">T</div>
         <span>Thrashers</span>
       </div>
-      <div class="vs-badge">VS</div>
-      <div class="team-info">
-        <div class="team-logo">D</div>
+      <div class="score-box winner">5 - 2</div> <div class="team-info">
         <span>Ducks</span>
+        <div class="team-logo">D</div>
       </div>
       <div class="match-status">
-        <span class="time">19:00</span>
+        <span class="time">FINAL</span>
         <span class="location">Princeville</span>
       </div>
     </div>
 
-    <div class="match-card">
-      <div class="team-info">
-        <div class="team-logo">V</div>
-        <span>Vikings</span>
+    <div class="match-card canadiens-accent">
+      <div class="match-date-badge">
+        <span class="date-day">15</span>
+        <span class="date-month">Mai</span>
       </div>
-      <div class="vs-badge">VS</div>
       <div class="team-info">
         <div class="team-logo">C</div>
         <span>Canadiens</span>
+      </div>
+      <div class="vs-badge">VS</div> <div class="team-info">
+        <span>Vikings</span>
+        <div class="team-logo">V</div>
       </div>
       <div class="match-status">
         <span class="time">20:00</span>
-        <span class="location">Princeville</span>
-      </div>
-    </div>
-
-    <div class="match-card">
-      <div class="team-info">
-        <div class="team-logo">D</div>
-        <span>Ducks</span>
-      </div>
-      <div class="vs-badge">VS</div>
-      <div class="team-info">
-        <div class="team-logo">V</div>
-        <span>Vikings</span>
-      </div>
-      <div class="match-status">
-        <span class="time">21:00</span>
-        <span class="location">Princeville</span>
-      </div>
-    </div>
-
-    <div class="match-card">
-      <div class="team-info">
-        <div class="team-logo">C</div>
-        <span>Canadiens</span>
-      </div>
-      <div class="vs-badge">VS</div>
-      <div class="team-info">
-        <div class="team-logo">T</div>
-        <span>Thrashers</span>
-      </div>
-      <div class="match-status">
-        <span class="time">22:00</span>
         <span class="location">Princeville</span>
       </div>
     </div>
