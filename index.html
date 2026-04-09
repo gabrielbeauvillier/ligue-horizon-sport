@@ -53,25 +53,10 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
 .account-btn{position:absolute;top:20px;right:20px;background:rgba(15,47,71,0.9);padding:10px 15px;border-radius:25px;color:var(--blue);cursor:pointer;z-index:3;border:1px solid rgba(192,192,192,0.4);}
 .account-menu{display:none;position:absolute;top:60px;right:20px;background:#123a5a;border-radius:10px;padding:10px;z-index:4;}
 .account-menu a{display:block;padding:8px;color:white;text-decoration:none;}
-/* NOUVEAU STYLE CALENDRIER PRO */
-.calendar-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-/* DESIGN CALENDRIER ÉPURÉ */
-.calendar-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
 
 .match-card {
-    display: grid !important; /* Force les 5 colonnes */
-    grid-template-columns: 1fr 1fr 80px 1fr 1fr; /* Équipe | Logo | SCORE | Logo | Équipe */
+    display: grid !important; 
+    grid-template-columns: 1fr 1fr 80px 1fr 1fr;
     align-items: center;
     text-align: center;
     background: rgba(255,255,255,0.05);
@@ -92,15 +77,11 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
 .date-month { font-size: 11px; text-transform: uppercase; opacity: 0.7; }
 
 .team-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
     font-weight: 600;
     font-size: 18px;
 }
 
-/* Centrage du score */
-.score-box, .vs-badge {
+.score-box {
     justify-self: center;
     background: rgba(15, 47, 71, 0.8);
     padding: 6px 15px;
@@ -121,62 +102,6 @@ th{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
 .time { display: block; font-size: 18px; font-weight: 700; color: var(--blue); }
 .location { display: block; font-size: 11px; text-transform: uppercase; opacity: 0.6; }
 
-/* Accents de couleurs */
-.thrashers-accent { border-left-color: #e65100; }
-.canadiens-accent { border-left-color: #af1e2d; }
-.vikings-accent { border-left-color: #90a4ae; }
-.ducks-accent { border-left-color: #00685e; }
-.schedule-controls {
-    display: flex;
-    gap: 15px;
-    margin: 20px auto 30px auto; /* Centre la barre */
-    background: rgba(15, 47, 71, 0.4);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(79, 195, 247, 0.2);
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    max-width: 1200px; /* Aligné sur la largeur de ton calendrier */
-    width: 95%; /* Évite de toucher les bords sur mobile */
-}
-
-.control-group {
-    flex: 1;
-    min-width: 250px;
-}
-
-.control-group label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--blue);
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.schedule-controls select, 
-.schedule-controls input {
-    width: 100%;
-    background: #0b1e2d;
-    border: 1px solid rgba(79, 195, 247, 0.4);
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-
-/* Icône du calendrier blanche */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-}
-  /* --- BLOC NETTOYÉ POUR PRINCEVILLE --- */
 .schedule-controls {
     display: flex;
     gap: 15px;
@@ -186,7 +111,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 12px;
     border: 1px solid rgba(79, 195, 247, 0.2);
     flex-wrap: wrap;
-    box-sizing: border-box;
     max-width: 1200px;
 }
 
@@ -204,7 +128,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-transform: uppercase;
 }
 
-/* Style unique pour les menus et la date */
 .schedule-controls select, 
 #dateFilter {
     width: 100%;
@@ -216,24 +139,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-weight: 600;
-    cursor: pointer;
-    box-sizing: border-box;
-    appearance: none;
 }
 
-/* Cache le curseur texte sur la date */
-#dateFilter {
-    caret-color: transparent;
-}
-
-/* Rend l'icône du calendrier blanche */
+/* REND L'ICÔNE DU CALENDRIER BLANCHE */
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
-}
-
-#dateFilter::placeholder {
-    color: white;
-    opacity: 1;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -253,7 +164,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   <div class="content" style="display:flex; flex-direction:column; align-items:center; margin-top:-50px;">
   <img src="logo.png" style="width:350px; margin-bottom:-75px;"> 
-  
   <h1 style="margin-top:0px; font-size:52px;">LIGUE DYNAMO SPORT</h1>
 </div>
 </header>
@@ -274,17 +184,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 <h3>📸 Photos</h3>
 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
-  
   <div style="text-align:center;">
     <img src="surface.jpg" style="width:100%; border-radius:10px; border: 2px solid #4fc3f7; object-fit:cover; height:250px;">
     <p style="font-size:14px; color:#4fc3f7; font-weight:600; margin-top:10px;">Prêt pour la mise au jeu</p>
   </div>
-
   <div style="text-align:center;">
     <img src="action.jpg" style="width:100%; border-radius:10px; border: 2px solid #4fc3f7; object-fit:cover; height:250px;">
     <p style="font-size:14px; color:#4fc3f7; font-weight:600; margin-top:10px;">L'action à chaque match</p>
   </div>
-
 </div>
 
 <h3>📰 Nouvelles</h3>
@@ -310,17 +217,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         </div>
         <div class="control-group">
             <label>Date précise</label>
-            <!-- Input simplifié et robuste -->
-            /* Rend l'icône du calendrier blanche pour qu'on la voie bien */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-    font-size: 18px;
-}
+            <input type="date" id="dateFilter" onchange="filterSchedule()">
+        </div>
     </div>
 
     <div id="calendarContainer">
-        <!-- Ajout de data-date (format AAAA-MM-JJ) et data-teams -->
         <div class="match-card" data-date="2025-05-15" data-teams="thrashers canadiens">
             <div class="match-date-badge"><span class="date-day">15</span><span class="date-month">mai</span></div>
             <div class="team-info"><span>Thrashers</span></div>
@@ -347,69 +248,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     </div>
 </section>
 
-</section>
-
 <section id="standings">
   <h2>Classement Général</h2>
   <table id="standingsTable">
     <thead>
-      <tr>
-        <th class="rank-col">#</th>
-        <th>Équipe</th>
-        <th>PJ</th>
-        <th>V</th>
-        <th>D</th>
-        <th>BP</th>
-        <th>BC</th>
-        <th>Diff</th>
-        <th>PTS</th>
-      </tr>
+      <tr><th>#</th><th>Équipe</th><th>PJ</th><th>V</th><th>D</th><th>BP</th><th>BC</th><th>Diff</th><th>PTS</th></tr>
     </thead>
     <tbody>
-      <tr class="leader">
-        <td class="rank-data">1</td>
-        <td>Thrashers</td>
-        <td>2</td>
-        <td>2</td>
-        <td>0</td>
-        <td>10</td>
-        <td>4</td>
-        <td>+6</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td class="rank-data">2</td>
-        <td>Canadiens</td>
-        <td>2</td>
-        <td>1</td>
-        <td>1</td>
-        <td>7</td>
-        <td>6</td>
-        <td>+1</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td class="rank-data">3</td>
-        <td>Vikings</td>
-        <td>2</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5</td>
-        <td>7</td>
-        <td>-2</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td class="rank-data">4</td>
-        <td>Ducks</td>
-        <td>2</td>
-        <td>0</td>
-        <td>2</td>
-        <td>3</td>
-        <td>8</td>
-        <td>-5</td>
-        <td>0</td>
-      </tr>
+      <tr><td>1</td><td>Thrashers</td><td>2</td><td>2</td><td>0</td><td>10</td><td>4</td><td>+6</td><td>4</td></tr>
+      <tr><td>2</td><td>Canadiens</td><td>2</td><td>1</td><td>1</td><td>7</td><td>6</td><td>+1</td><td>2</td></tr>
+      <tr><td>3</td><td>Vikings</td><td>2</td><td>1</td><td>1</td><td>5</td><td>7</td><td>-2</td><td>2</td></tr>
+      <tr><td>4</td><td>Ducks</td><td>2</td><td>0</td><td>2</td><td>3</td><td>8</td><td>-5</td><td>0</td></tr>
     </tbody>
   </table>
 </section>
@@ -441,16 +290,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 </p>
 <p><em>Document complet à venir</em></p>
 </section>
+
 <section id="info">
 <h2>Informations</h2>
 <p>
-Ligue amicale de hockey balle - Dynamo Sport<br>
 Lieu été : Parc multisport de Princeville<br>
 Lieu hiver : Pavillon Agri-Sport de Victoriaville<br>
-Format : 4 contre 4<br>
 Saison : mi-mai à mi-septembre
 </p>
-<p><em>Plus d’informations détaillées à venir</em></p>
 </section>
 
 <!-- MODAL -->
@@ -464,11 +311,10 @@ Saison : mi-mai à mi-septembre
 </div>
 
 <script>
-
 const players=[
-{name:'Gabriel Beauvillier',team:'A',g:5,a:3},
-{name:'Joueur Test',team:'B',g:2,a:4},
-{name:'Marc Tremblay',team:'A',g:3,a:1}
+{name:'Gabriel Beauvillier',team:'Thrashers',g:5,a:3},
+{name:'Joueur Test',team:'Canadiens',g:2,a:4},
+{name:'Marc Tremblay',team:'Vikings',g:3,a:1}
 ];
 
 function renderPlayers(list){
@@ -496,30 +342,23 @@ function closeModal(){document.getElementById('playerModal').style.display='none
 
 function toggleMenu(){const m=document.getElementById('accountMenu');m.style.display=m.style.display==='block'?'none':'block';}
 
-  
 function filterSchedule() {
     const selectedTeam = document.getElementById('teamFilter').value.toLowerCase();
-    const selectedDate = document.getElementById('dateFilter').value; // Récupère "AAAA-MM-JJ"
+    const selectedDate = document.getElementById('dateFilter').value; 
     const cards = document.querySelectorAll('.match-card');
 
     cards.forEach(card => {
-        // On récupère les infos cachées dans les data-attributes
-        const cardTeams = card.getAttribute('data-teams');
+        const cardTeams = card.getAttribute('data-teams').toLowerCase();
         const cardDate = card.getAttribute('data-date');
-
-        // Logique de filtrage
         const teamMatch = (selectedTeam === 'all' || cardTeams.includes(selectedTeam));
         const dateMatch = (selectedDate === "" || selectedDate === cardDate);
-
-        // Affichage
         if (teamMatch && dateMatch) {
-            card.style.display = 'grid'; // On remet en grid
+            card.style.display = 'grid';
         } else {
             card.style.display = 'none';
         }
     });
 }
-
 </script>
 </body>
 </html>
