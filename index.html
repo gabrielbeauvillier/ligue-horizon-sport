@@ -495,33 +495,30 @@ function toggleMenu(){const m=document.getElementById('accountMenu');m.style.dis
 
   
 function filterSchedule() {
-    const team = document.getElementById('teamFilter').value;
-    const dateInput = document.getElementById('dateFilter').value;
+    const team = document.getElementById('teamFilter').value.toLowerCase();
+    const dateInput = document.getElementById('dateFilter').value; // Format yyyy-mm-dd
     const cards = document.querySelectorAll('.match-card');
 
     cards.forEach(card => {
-        // 1. Logique de détection
-        let content = card.textContent || card.innerText;
-        let showTeam = (team === 'all' || content.includes(team));
+        // 1. Recherche par équipe
+        const teamText = card.innerText.toLowerCase();
+        const showTeam = (team === 'all' || teamText.includes(team));
+
+        // 2. Recherche par date (Simple et directe)
         let showDate = true;
-
         if (dateInput) {
+            const [year, month, day] = dateInput.split('-');
             const dayBadge = card.querySelector('.date-day').innerText.padStart(2, '0');
-            const monthBadge = card.querySelector('.date-month').innerText.toLowerCase();
             
-            const dateObj = new Date(dateInput + "T00:00:00");
-            const selDay = dateObj.getDate().toString().padStart(2, '0');
-            const months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-            const selMonth = months[dateObj.getMonth()];
-
-            showDate = (dayBadge === selDay && monthBadge === selMonth);
+            // On compare juste le chiffre du jour pour éviter les erreurs de noms de mois
+            showDate = (dayBadge === day);
         }
 
-        // 2. Application de l'affichage (LA CORRECTION)
+        // 3. L'affichage (Le point critique)
         if (showTeam && showDate) {
-            card.style.display = 'grid'; // Garde le score au centre
+            card.style.display = 'grid'; // Utilise 'grid' pour le centrage
         } else {
-            card.style.display = 'none'; // Cache le match
+            card.style.display = 'none';
         }
     });
 }
