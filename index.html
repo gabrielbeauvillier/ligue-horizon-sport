@@ -215,7 +215,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* Rend l'icône du calendrier blanche */
-input[type="date"]::-webkit-calendar-picker-indicator {
+<input type="date" id="dateFilter" onchange="filterSchedule()" onclick="this.showPicker()" data-placeholder="JJ/MM/AAAA">
     filter: invert(1);
 }
   /* Amélioration du look de la liste déroulante */
