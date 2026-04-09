@@ -308,39 +308,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
                 <option value="Ducks">Ducks</option>
             </select>
         </div>
-   <div class="control-group">
-    <label>Date précise</label>
-    <input type="text" id="dateFilter" placeholder="Choisir une date" 
-           readonly 
-           onfocus="this.type='date'; this.showPicker();" 
-           onblur="if(!this.value) this.type='text';" 
-           onchange="filterSchedule()">
-</div>
+        <div class="control-group">
+            <label>Date précise</label>
+            <!-- Input simplifié et robuste -->
+            /* Rend l'icône du calendrier blanche pour qu'on la voie bien */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    font-size: 18px;
+}
     </div>
 
-    <div class="match-card">
-        <div class="match-date-badge"><span class="date-day">15</span><span class="date-month">mai</span></div>
-        <div class="team-info"><span>Thrashers</span></div>
-        <div class="score-box">4 - 2</div>
-        <div class="team-info"><span>Canadiens</span></div>
-        <div class="match-status"><span class="time">19:30</span><span class="location">Princeville</span></div>
-    </div>
+    <div id="calendarContainer">
+        <!-- Ajout de data-date (format AAAA-MM-JJ) et data-teams -->
+        <div class="match-card" data-date="2025-05-15" data-teams="thrashers canadiens">
+            <div class="match-date-badge"><span class="date-day">15</span><span class="date-month">mai</span></div>
+            <div class="team-info"><span>Thrashers</span></div>
+            <div class="score-box">4 - 2</div>
+            <div class="team-info"><span>Canadiens</span></div>
+            <div class="match-status"><span class="time">19:30</span><span class="location">Princeville</span></div>
+        </div>
 
-    <div class="match-card">
-        <div class="match-date-badge"><span class="date-day">16</span><span class="date-month">mai</span></div>
-        <div class="team-info"><span>Vikings</span></div>
-        <div class="score-box">1 - 3</div>
-        <div class="team-info"><span>Thrashers</span></div>
-        <div class="match-status"><span class="time">20:45</span><span class="location">Princeville</span></div>
-    </div>
+        <div class="match-card" data-date="2025-05-16" data-teams="vikings thrashers">
+            <div class="match-date-badge"><span class="date-day">16</span><span class="date-month">mai</span></div>
+            <div class="team-info"><span>Vikings</span></div>
+            <div class="score-box">1 - 3</div>
+            <div class="team-info"><span>Thrashers</span></div>
+            <div class="match-status"><span class="time">20:45</span><span class="location">Princeville</span></div>
+        </div>
 
-    <div class="match-card">
-        <div class="match-date-badge"><span class="date-day">17</span><span class="date-month">mai</span></div>
-        <div class="team-info"><span>Ducks</span></div>
-        <div class="score-box">0 - 0</div>
-        <div class="team-info"><span>Canadiens</span></div>
-        <div class="match-status"><span class="time">18:15</span><span class="location">Princeville</span></div>
-    </div>
+        <div class="match-card" data-date="2025-05-17" data-teams="ducks canadiens">
+            <div class="match-date-badge"><span class="date-day">17</span><span class="date-month">mai</span></div>
+            <div class="team-info"><span>Ducks</span></div>
+            <div class="score-box">0 - 0</div>
+            <div class="team-info"><span>Canadiens</span></div>
+            <div class="match-status"><span class="time">18:15</span><span class="location">Princeville</span></div>
+        </div>
     </div>
 </section>
 
@@ -495,29 +498,24 @@ function toggleMenu(){const m=document.getElementById('accountMenu');m.style.dis
 
   
 function filterSchedule() {
-    console.log("Le filtre est activé !"); // Vérification dans l'inspecteur
-    
-    const team = document.getElementById('teamFilter').value.toLowerCase();
-    const dateInput = document.getElementById('dateFilter').value;
+    const selectedTeam = document.getElementById('teamFilter').value.toLowerCase();
+    const selectedDate = document.getElementById('dateFilter').value; // Récupère "AAAA-MM-JJ"
     const cards = document.querySelectorAll('.match-card');
 
     cards.forEach(card => {
-        // Lecture simplifiée du contenu
-        const text = card.innerText.toLowerCase();
-        const showTeam = (team === 'all' || text.includes(team));
-        
-        let showDate = true;
-        if (dateInput) {
-            const daySelected = dateInput.split('-')[2]; // Récupère le jour (ex: 15)
-            const dayCard = card.querySelector('.date-day').innerText.padStart(2, '0');
-            showDate = (daySelected === dayCard);
-        }
+        // On récupère les infos cachées dans les data-attributes
+        const cardTeams = card.getAttribute('data-teams');
+        const cardDate = card.getAttribute('data-date');
 
-        // Application du style avec priorité maximale
-        if (showTeam && showDate) {
-            card.style.setProperty('display', 'grid', 'important');
+        // Logique de filtrage
+        const teamMatch = (selectedTeam === 'all' || cardTeams.includes(selectedTeam));
+        const dateMatch = (selectedDate === "" || selectedDate === cardDate);
+
+        // Affichage
+        if (teamMatch && dateMatch) {
+            card.style.display = 'grid'; // On remet en grid
         } else {
-            card.style.setProperty('display', 'none', 'important');
+            card.style.display = 'none';
         }
     });
 }
