@@ -251,6 +251,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(255, 255, 255, 0.7);
     font-weight: 600;
 }
+  /* Amélioration du champ date pour Princeville */
+#dateFilter {
+    cursor: pointer;          /* Transforme le curseur en main */
+    caret-color: transparent; /* Cache la barre de saisie clignotante */
+    font-family: inherit;
+    font-weight: 600;
+    text-align: left;
+}
+
+#dateFilter::placeholder {
+    color: white;             /* Rend le texte "Choisir une date" bien blanc */
+    opacity: 1;               /* S'assure qu'il n'est pas transparent */
+}
 </style>
 </head>
 
@@ -324,9 +337,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
                 <option value="Ducks">Ducks</option>
             </select>
         </div>
-      <div class="control-group">
+     <div class="control-group">
     <label>Date précise</label>
-    <input type="text" id="dateFilter" placeholder="Choisir une date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" onchange="filterSchedule()" onclick="this.showPicker()">
+    <input type="text" id="dateFilter" placeholder="Choisir une date" 
+           readonly 
+           onclick="this.type='date'; this.showPicker();" 
+           onchange="filterSchedule()"
+           onblur="if(!this.value) this.type='text';">
 </div>
     </div>
 
