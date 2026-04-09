@@ -495,33 +495,31 @@ function toggleMenu(){const m=document.getElementById('accountMenu');m.style.dis
 
   
 function filterSchedule() {
-    try {
-        const team = document.getElementById('teamFilter').value.toLowerCase();
-        const dateInput = document.getElementById('dateFilter').value;
-        const cards = document.querySelectorAll('.match-card');
+    console.log("Le filtre est activé !"); // Vérification dans l'inspecteur
+    
+    const team = document.getElementById('teamFilter').value.toLowerCase();
+    const dateInput = document.getElementById('dateFilter').value;
+    const cards = document.querySelectorAll('.match-card');
 
-        for (let i = 0; i < cards.length; i++) {
-            let card = cards[i];
-            let teamText = card.innerText.toLowerCase();
-            let showTeam = (team === 'all' || teamText.includes(team));
-            let showDate = true;
-
-            if (dateInput) {
-                const dayInput = dateInput.split('-')[2];
-                const dayBadge = card.querySelector('.date-day').innerText.padStart(2, '0');
-                showDate = (dayBadge === dayInput);
-            }
-
-            // ON FORCE L'AFFICHAGE CI-DESSOUS
-            if (showTeam && showDate) {
-                card.style.setProperty('display', 'grid', 'important');
-            } else {
-                card.style.setProperty('display', 'none', 'important');
-            }
+    cards.forEach(card => {
+        // Lecture simplifiée du contenu
+        const text = card.innerText.toLowerCase();
+        const showTeam = (team === 'all' || text.includes(team));
+        
+        let showDate = true;
+        if (dateInput) {
+            const daySelected = dateInput.split('-')[2]; // Récupère le jour (ex: 15)
+            const dayCard = card.querySelector('.date-day').innerText.padStart(2, '0');
+            showDate = (daySelected === dayCard);
         }
-    } catch (e) {
-        console.error("Erreur dans le filtre : ", e);
-    }
+
+        // Application du style avec priorité maximale
+        if (showTeam && showDate) {
+            card.style.setProperty('display', 'grid', 'important');
+        } else {
+            card.style.setProperty('display', 'none', 'important');
+        }
+    });
 }
 
 </script>
