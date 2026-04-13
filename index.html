@@ -69,14 +69,14 @@ h2{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
     font-size: 13px;
 }
 
-/* STYLE POUR LES INPUTS ET LES SELECTS (UNIFIÉ) */
+/* STYLE POUR LES INPUTS ET LES SELECTS */
 .schedule-controls select, 
 .schedule-controls input,
 .flatpickr-input.form-control {
     width: 100% !important;
     background: #0b1e2d !important;
     border: 1px solid rgba(79, 195, 247, 0.3) !important;
-    color: white !important;
+    color: white !important; 
     padding: 14px !important;
     border-radius: 10px !important;
     font-family: 'Montserrat', sans-serif !important;
@@ -89,7 +89,12 @@ h2{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
     appearance: none !important;
 }
 
-/* Wrappers pour ajouter les icônes à droite */
+/* FORCE LE TEXTE "CHOISIR UNE DATE" EN BLANC */
+.schedule-controls input::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+}
+
 .custom-input-wrapper {
     position: relative;
     width: 100%;
@@ -105,7 +110,6 @@ h2{background:var(--silver);-webkit-background-clip:text;-webkit-text-fill-color
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    opacity: 0.8;
 }
 
 .schedule-controls select:hover, 
@@ -161,11 +165,6 @@ table { width: 100%; border-collapse: collapse; margin-top: 15px; }
 th, td { padding: 12px; border-bottom: 1px solid #4fc3f7; text-align: center; }
 .player-card { background: #123a5a; padding: 12px; margin: 5px 0; border-radius: 10px; cursor: pointer; transition: 0.3s; }
 .player-card:hover { transform: translateY(-3px); background: #1a4b73; }
-
-/* MODAL */
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 10; }
-.modal-content { background: #123a5a; padding: 25px; border-radius: 15px; max-width: 400px; width: 90%; text-align: center; border: 1px solid var(--blue); }
-.close { cursor: pointer; float: right; font-size: 24px; }
 
 /* COMPTE */
 .account-btn { position: absolute; top: 20px; right: 20px; background: rgba(15,47,71,0.9); padding: 10px 15px; border-radius: 25px; color: var(--blue); cursor: pointer; z-index: 3; border: 1px solid rgba(192,192,192,0.4); }
@@ -311,25 +310,12 @@ th, td { padding: 12px; border-bottom: 1px solid #4fc3f7; text-align: center; }
 
 <section id="rules">
 <h2>Règlements</h2>
-<p>
-- Respect obligatoire envers les arbitres et les joueurs<br>
-- Format 4 contre 4<br>
-- Matchs de 2 périodes<br>
-- Aucun comportement antisportif toléré<br>
-- Les décisions de l’arbitre sont finales
-</p>
-<p><em>Document complet à venir</em></p>
+<p>- Respect obligatoire envers les arbitres et les joueurs<br>- Format 4 contre 4<br>- Matchs de 2 périodes<br>- Aucun comportement antisportif toléré</p>
 </section>
 
 <section id="info">
 <h2>Informations</h2>
-<p>
-Ligue amicale de hockey balle - Dynamo Sport<br>
-Lieu été : Parc multisport de Princeville<br>
-Lieu hiver : Pavillon Agri-Sport de Victoriaville<br>
-Format : 4 contre 4<br>
-Saison : mi-mai à mi-septembre
-</p>
+<p>Lieu été : Princeville | Lieu hiver : Victoriaville | Format : 4 contre 4</p>
 </section>
 
 <div class="modal" id="playerModal">
@@ -341,18 +327,16 @@ Saison : mi-mai à mi-septembre
 </div>
 </div>
 
-<!-- SCRIPTS EXTERNES -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 
 <script>
-// INITIALISATION DU CALENDRIER MODERNE AVEC FORMATAGE UNIFIÉ
 flatpickr("#dateFilter", {
     locale: "fr",
     dateFormat: "Y-m-d",
     altInput: true,
     altFormat: "j F Y",
-    altInputClass: "form-control", // Force l'application du style harmonisé
+    altInputClass: "form-control", 
     onChange: function() { filterSchedule(); }
 });
 
