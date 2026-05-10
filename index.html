@@ -209,23 +209,6 @@
         .modal-content { background: #123a5a; padding: 25px; border-radius: 15px; width: 90%; max-width: 450px; text-align: center; border: 1px solid var(--blue); position: relative; }
         .close { position: absolute; top: 15px; right: 15px; cursor: pointer; font-size: 20px; }
 
-        /* STYLE POUR LE TEXTE DES RÈGLEMENTS */
-        .rules-doc {
-            text-align: left;
-            line-height: 1.6;
-            background: rgba(15, 47, 71, 0.4);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(79, 195, 247, 0.2);
-            max-height: 800px;
-            overflow-y: auto;
-        }
-        .rules-doc h3 { margin-top: 40px; border-bottom: 1px solid var(--blue); padding-bottom: 5px; }
-        .rules-doc h4 { color: var(--blue); margin-top: 25px; }
-        .rules-doc p { margin-bottom: 15px; font-size: 15px; }
-        .rules-doc ul { margin-bottom: 20px; }
-        .rules-doc li { margin-bottom: 8px; }
-
         /* FLATPICKR DESIGN */
         .flatpickr-calendar { background: #0f2f47 !important; border: 1px solid var(--blue) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;}
     </style>
@@ -390,87 +373,13 @@
 </section>
 
 <section id="rules">
-    <h2>Livre des Règlements</h2>
-    <div class="rules-doc">
-        <h3>1. Code de conduite</h3>
-        <p>1.1 Le respect des lieux est une priorité absolue pour l'organisation. Tout manquement, comportement irrespectueux ou dommage causé aux installations utilisées par la ligue est strictement interdit. Advenant des dégradations matérielles, le joueur ou l'équipe impliquée s'expose à des sanctions sévères, incluant une suspension immédiate, en plus de la responsabilité financière des réparations.</p>
-        <p>1.2 Le respect envers le personnel de la ligue (arbitres, marqueurs et administrateurs) est exigé en tout temps. Aucun écart de conduite, abus verbal ou geste d'intimidation ne sera toléré. La ligue appliquera des suspensions rigoureuses en fonction de la gravité des incidents rapportés.</p>
-
-        <h3>2. Équipement obligatoire</h3>
-        <h4>2.1 Équipement de joueurs</h4>
-        <p>2.1.1 Tout participant ne respectant pas les exigences relatives aux pièces d'équipement obligatoires se verra imposer une pénalité mineure (2 minutes) à son équipe. Pour prendre part à une rencontre, les éléments suivants sont requis en tout temps :</p>
-        <ul>
-            <li>Un casque protecteur conçu pour le hockey sur glace ou pour le hockey balle.</li>
-            <li>Des jambières de protection spécifiques au hockey balle.</li>
-            <li>Des gants adaptés pour le hockey sur glace ou le hockey balle.</li>
-            <li>Une paire de chaussures de sport fermées.</li>
-        </ul>
-        <p>2.1.2 Aucun joueur ne sera autorisé à embarquer sur la surface s’il lui manque l'une de ces pièces d'équipement réglementaires.</p>
-        <p>2.1.3 Tous les bâtons de hockey sont permis, la palette doit cependant être pleine et aucun ruban ne sera toléré sous les palettes des bâtons.</p>
-        <p>2.1.4 Tous les bâtons, dont les palettes sont en mauvais état et qui représentent un danger ou un risque de blessure pour les joueurs pourront être jugés comme illégaux par les arbitres.</p>
-        <p>2.1.5 Tout joueur se doit de porter un chandail ayant un numéro unique imprimé dans le dos. Deux joueurs différents ne peuvent pas porter le même numéro.</p>
-        
-        <h4>2.2 Uniformes des équipes</h4>
-        <p>2.2.1 Les membres d'une même équipe doivent arborer des chandails de couleur identique.</p>
-        <p>2.2.2 Chaque chandail doit présenter un numéro distinct à l'arrière, compris entre 1 et 99. Ces numéros doivent être parfaitement lisibles pour faciliter le travail des officiels.</p>
-        <p>2.2.3 Si les deux formations en présence portent des couleurs similaires, l'organisation fournira des dossards à l'équipe désignée comme « visiteuse ».</p>
-
-        <h4>2.3 Équipement de gardien de but</h4>
-        <p>2.3.1 Le gardien de but doit obligatoirement porter un équipement complet et sécuritaire comprenant : un masque de protection, un plastron, des jambières (de hockey ou de hockey balle), un bloqueur et une mitaine.</p>
-        <p>2.3.2 Il est strictement interdit aux gardiens d'appliquer un produit glissant sur leurs jambières. En cas d'infraction, le gardien fautif devra immédiatement quitter la surface de jeu afin de rendre son équipement conforme, et une punition mineure (2 minutes) sera décernée à son équipe.</p>
-
-        <h3>3. Durée des parties</h3>
-        <p>3.1 La durée de l’échauffement est de 5 minutes.</p>
-        <p>3.2 Les parties sont séparées en 3 périodes de 15 minutes. Les pauses entre les périodes sont de 2 minutes.</p>
-        <p>3.4 Les équipes ont droit à un temps d’arrêt par partie d’une minute.</p>
-
-        <h3>4. Retards</h3>
-        <p>4.1 Une punition mineure sera accordée à une équipe lorsqu’elle n’est pas en mesure de débuter la partie dans les délais. Une punition de 4 minutes sera accordée si une équipe retarde le début de la partie de 5 minutes.</p>
-        <p>4.2 Si une équipe n’est pas en mesure de débuter la partie après 10 minutes de retards, celle-ci perdra la partie par forfait.</p>
-
-        <h3>5. Forfaits</h3>
-        <p>5.1 Dans l'éventualité où une partie est déclarée perdue par forfait, la victoire est accordée à l'équipe non fautive par un pointage officiel de 3 à 0 au classement.</p>
-
-        <h3>6. Points au classement</h3>
-        <p>À l'issue de chaque rencontre de la saison régulière, les points sont octroyés ainsi :</p>
-        <ul>
-            <li>Victoire en temps règlementaire : 3 points</li>
-            <li>Victoire en prolongation ou fusillade : 2 points</li>
-            <li>Défaite en prolongation ou fusillade : 1 point</li>
-            <li>Défaite en temps réglementaire : 0 point</li>
-        </ul>
-
-        <h3>7. Bris d’égalité au classement</h3>
-        <p>1. Points | 2. Nombre de victoires régulières | 3. Nombre de défaites régulières | 4. Différentiel | 5. Total buts pour | 6. Total buts contre.</p>
-
-        <h3>8. Rôles du capitaine</h3>
-        <p>8.1 L’alignement complet de l’équipe doit obligatoirement être inscrit sur la feuille de match officielle avant l'affrontement.</p>
-
-        <h3>9. Règlements généraux de jeu</h3>
-        <h4>9.1 Dégagements</h4>
-        <p>9.1.1 Il est interdit d’effectuer un dégagement directement depuis sa zone défensive jusqu'au fond du territoire adverse si un joueur adverse est le premier à atteindre la balle.</p>
-        
-        <h4>9.3 Changements de joueurs</h4>
-        <p>9.3.2 Règle de transition : Le participant qui quitte la surface doit se trouver à l'intérieur d'une zone limite de deux (2) mètres devant son banc avant que son remplaçant ne puisse sauter sur le terrain.</p>
-        
-        <h4>9.5 Hauteur du bâton</h4>
-        <p>9.5.1 Dès qu'un joueur entre en contact avec la balle à une hauteur supérieure à la limite supérieure de la bande, le jeu est arrêté.</p>
-
-        <h4>9.7 Gestion du jeu derrière le but (5 secondes)</h4>
-        <p>9.7.1 Lorsqu'une équipe prend possession de la balle derrière son propre filet sans pression directe, un décompte officiel de cinq (5) secondes est entamé. L'équipe doit obligatoirement faire franchir à la balle la ligne de but.</p>
-
-        <h4>9.15 Règlement sur les glissades</h4>
-        <p>9.15.1 Toute glissade volontaire avec contact physique sur un adversaire est sanctionnée d'une punition de quatre (4) minutes.</p>
-        <p>9.15.2 Une glissade sans contact jugée dangereuse entraîne une punition mineure (2 minutes).</p>
-
-        <h4>9.18 Composition de l'alignement</h4>
-        <p>9.18.1 Le nombre maximal de joueurs en uniforme est fixé à neuf (9) joueurs de champ et un (1) gardien de but.</p>
-
-        <h3>10. Prolongation</h3>
-        <p>10.1 En saison régulière, une période de prolongation de cinq (5) minutes à temps continu est disputée à 4 contre 4. Le premier but marqué met fin à la partie (mort subite).</p>
-
-        <h3>11. Tirs de barrage (fusillade)</h3>
-        <p>11.2.1 La fusillade débute avec une séquence de trois (3) tireurs différents par équipe. Si l'égalité persiste, la séance se poursuit en formule mort subite. Un capitaine peut réutiliser un joueur déjà utilisé lors de la phase de mort subite.</p>
+    <h2>Règlements Officiels</h2>
+    <div class="elite-container" style="height: 800px; padding: 0; overflow: hidden;">
+        <!-- IMPORTANT : Renommez votre fichier PDF "reglements.pdf" et mettez-le dans le même dossier que ce fichier HTML -->
+        <iframe src="reglements.pdf" width="100%" height="100%" style="border: none;">
+            <p style="padding: 20px;">Votre navigateur ne peut pas afficher le PDF directement. 
+            <a href="reglements.pdf" target="_blank" style="color: var(--blue);">Cliquez ici pour télécharger les règlements (PDF).</a></p>
+        </iframe>
     </div>
 </section>
 
@@ -492,7 +401,7 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 
 <script>
-    // --- DONNÉES DES MATCHS ---
+    // --- DONNÉES DES MATCHS (Centralisé pour tout le site) ---
     const matchesData = [
         { id: 1, date: "2025-05-15", team1: "Thrashers", score1: 4, team2: "Canadiens", score2: 2, time: "19:30", location: "Princeville", type: "Régulière" },
         { id: 2, date: "2025-05-16", team1: "Vikings", score1: 1, team2: "Thrashers", score2: 3, time: "20:45", location: "Princeville", type: "Régulière" },
@@ -502,6 +411,7 @@
 
     const teamNames = ["Thrashers", "Canadiens", "Vikings", "Ducks"];
 
+    // --- INITIALISATION ---
     document.addEventListener('DOMContentLoaded', () => {
         flatpickr("#dateFilter", { locale: "fr", dateFormat: "Y-m-d", altInput: true, altFormat: "j F Y", altInputClass: "form-control", onChange: filterSchedule });
         renderSchedule();
@@ -510,15 +420,20 @@
         renderGoalies();
     });
 
+    // --- LOGIQUE CALENDRIER ---
     function renderSchedule() {
         const container = document.getElementById('calendarContainer');
         container.innerHTML = '';
         const months = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+
         matchesData.forEach(m => {
             const dateObj = new Date(m.date + "T00:00:00");
+            const day = dateObj.getDate();
+            const month = months[dateObj.getMonth()];
+            
             container.innerHTML += `
                 <div class="match-card" data-date="${m.date}" data-teams="${m.team1} ${m.team2}" onclick="showMatchDetails(${m.id})">
-                    <div class="match-date-badge"><span class="date-day">${dateObj.getDate()}</span><span class="date-month">${months[dateObj.getMonth()]}</span></div>
+                    <div class="match-date-badge"><span class="date-day">${day}</span><span class="date-month">${month}</span></div>
                     <div class="team-info">${m.team1}</div>
                     <div class="score-box">${m.score1} - ${m.score2}</div>
                     <div class="team-info">${m.team2}</div>
@@ -530,9 +445,12 @@
     function filterSchedule() {
         const team = document.getElementById('teamFilter').value.toLowerCase();
         const date = document.getElementById('dateFilter').value; 
-        document.querySelectorAll('.match-card').forEach(c => {
-            const showT = (team === 'all' || c.getAttribute('data-teams').toLowerCase().includes(team));
-            const showD = (!date || date === c.getAttribute('data-date'));
+        const cards = document.querySelectorAll('.match-card');
+        cards.forEach(c => {
+            const cTeams = c.getAttribute('data-teams').toLowerCase();
+            const cDate = c.getAttribute('data-date');
+            const showT = (team === 'all' || cTeams.includes(team));
+            const showD = (!date || date === cDate);
             c.style.display = (showT && showD) ? 'grid' : 'none';
         });
     }
@@ -540,60 +458,143 @@
     function showMatchDetails(id) {
         const match = matchesData.find(m => m.id === id);
         document.getElementById('modalTitle').innerText = "Détails du match";
-        document.getElementById('modalBody').innerHTML = `<p><strong>Type :</strong> Saison ${match.type}</p><p style="font-size:24px; font-weight:bold;">${match.team1} ${match.score1} - ${match.score2} ${match.team2}</p>`;
+        document.getElementById('modalBody').innerHTML = `
+            <p><strong>Type :</strong> Saison ${match.type}</p>
+            <p style="font-size:24px; font-weight:bold;">${match.team1} ${match.score1} - ${match.score2} ${match.team2}</p>
+            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1);">
+            <p>Le sommaire complet des buteurs sera bientôt disponible.</p>
+        `;
         document.getElementById('playerModal').style.display = 'flex';
     }
 
+    // --- LOGIQUE CLASSEMENT AUTOMATIQUE ---
     function calculateStandings() {
         let standings = teamNames.map(name => ({ name, mj: 0, vr: 0, vp: 0, dp: 0, d: 0, pts: 0, bp: 0, bc: 0, diff: 0 }));
+
         matchesData.forEach(m => {
             let t1 = standings.find(t => t.name === m.team1);
             let t2 = standings.find(t => t.name === m.team2);
-            if (m.score1 === 0 && m.score2 === 0) return;
-            t1.mj++; t2.mj++; t1.bp += m.score1; t1.bc += m.score2; t2.bp += m.score2; t2.bc += m.score1;
-            if (m.score1 > m.score2) { t1.vr++; t1.pts += 3; t2.d++; } else if (m.score2 > m.score1) { t2.vr++; t2.pts += 3; t1.d++; }
-            t1.diff = t1.bp - t1.bc; t2.diff = t2.bp - t2.bc;
+
+            if (m.score1 === 0 && m.score2 === 0) return; // Match non joué
+
+            t1.mj++; t2.mj++;
+            t1.bp += m.score1; t1.bc += m.score2;
+            t2.bp += m.score2; t2.bc += m.score1;
+
+            if (m.score1 > m.score2) {
+                t1.vr++; t1.pts += 3; t2.d++;
+            } else if (m.score2 > m.score1) {
+                t2.vr++; t2.pts += 3; t1.d++;
+            } else {
+                t1.pts += 1; t2.pts += 1;
+            }
+            t1.diff = t1.bp - t1.bc;
+            t2.diff = t2.bp - t2.bc;
         });
+
         standings.sort((a, b) => b.pts - a.pts || b.diff - a.diff);
-        document.getElementById('standingsBody').innerHTML = standings.map((t, i) => `
-            <tr><td class="rank-col">${i + 1}</td><td><div class="team-cell">${t.name}</div></td>
-            <td>${t.mj}</td><td>${t.vr}</td><td>${t.vp}</td><td>${t.dp}</td><td>${t.d}</td>
-            <td class="pts-cell">${t.pts}</td><td>${t.bp}</td><td>${t.bc}</td>
-            <td class="${t.diff >= 0 ? 'diff-pos' : 'diff-neg'}">${t.diff > 0 ? '+' : ''}${t.diff}</td></tr>`).join('');
+        
+        const body = document.getElementById('standingsBody');
+        body.innerHTML = '';
+        standings.forEach((t, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${t.name}</span></div></td>
+                <td>${t.mj}</td><td>${t.vr}</td><td>${t.vp}</td><td>${t.dp}</td><td>${t.d}</td>
+                <td class="pts-cell">${t.pts}</td><td>${t.bp}</td><td>${t.bc}</td>
+                <td class="${t.diff >= 0 ? 'diff-pos' : 'diff-neg'}">${t.diff > 0 ? '+' : ''}${t.diff}</td>
+            </tr>`;
+        });
     }
 
+    // --- LOGIQUE PATINEURS ---
     let playersData = [
         {name: 'Gabriel Beauvillier', team: 'Thrashers', mj: 2, b: 5, p: 3, diff: 4, pun: 2},
         {name: 'Marc Tremblay', team: 'Vikings', mj: 2, b: 3, p: 1, diff: 2, pun: 4},
+        {name: 'Jean-Sébastien Roy', team: 'Ducks', mj: 2, b: 1, p: 0, diff: -3, pun: 0},
         {name: 'Luc Picard', team: 'Canadiens', mj: 2, b: 2, p: 4, diff: -1, pun: 0}
     ];
+    let currentSort = 'pts';
 
     function renderPlayers() {
         const body = document.getElementById('statsBody');
+        if(!body) return;
+        body.innerHTML = '';
         playersData.forEach(p => { p.pts = p.b + p.p; p.moy = (p.mj > 0 ? p.pts / p.mj : 0).toFixed(2); });
-        body.innerHTML = playersData.map((p, i) => `
-            <tr><td class="rank-col">${i + 1}</td><td><div class="team-cell"><span>${p.name}</span><span class="team-tag">${p.team}</span></div></td>
-            <td>${p.mj}</td><td>${p.b}</td><td>${p.p}</td><td class="pts-cell active-sort">${p.pts}</td>
-            <td class="${p.diff >= 0 ? 'diff-pos' : 'diff-neg'}">${p.diff}</td><td>${p.pun}</td><td>${p.moy}</td></tr>`).join('');
+        playersData.sort((a, b) => b[currentSort] - a[currentSort]);
+        playersData.forEach((p, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${p.name}</span><span class="team-tag">${p.team}</span></div></td>
+                <td class="${currentSort === 'mj' ? 'active-sort' : ''}">${p.mj}</td>
+                <td class="${currentSort === 'b' ? 'active-sort' : ''}">${p.b}</td>
+                <td class="${currentSort === 'p' ? 'active-sort' : ''}">${p.p}</td>
+                <td class="pts-cell ${currentSort === 'pts' ? 'active-sort' : ''}">${p.pts}</td>
+                <td class="${p.diff >= 0 ? 'diff-pos' : 'diff-neg'} ${currentSort === 'diff' ? 'active-sort' : ''}">${p.diff > 0 ? '+' : ''}${p.diff}</td>
+                <td class="${currentSort === 'pun' ? 'active-sort' : ''}">${p.pun}</td>
+                <td class="${currentSort === 'moy' ? 'active-sort' : ''}">${p.moy}</td>
+            </tr>`;
+        });
     }
 
-    let goaliesData = [{name: 'Jean-Luc Savard', team: 'Thrashers', mj: 2, v: 2, d: 0, tc: 45, arr: 41, bc: 4}];
+    // --- LOGIQUE GARDIENS ---
+    let goaliesData = [
+        {name: 'Jean-Luc Savard', team: 'Thrashers', mj: 2, v: 2, d: 0, tc: 45, arr: 41, bc: 4, bl: 0, b: 0, a: 0, pun: 0},
+        {name: 'Martin Tremblay', team: 'Canadiens', mj: 2, v: 1, d: 1, tc: 38, arr: 32, bc: 6, bl: 0, b: 0, a: 1, pun: 2}
+    ];
+    let currentGoalieSort = 'v';
 
     function renderGoalies() {
-        document.getElementById('goalieBody').innerHTML = goaliesData.map((g, i) => `
-            <tr><td class="rank-col">${i + 1}</td><td><div class="team-cell"><span>${g.name}</span><span class="team-tag">${g.team}</span></div></td>
-            <td>${g.mj}</td><td class="active-sort">${g.v}</td><td>${g.d}</td><td>${g.tc}</td><td>${g.arr}</td><td>${g.bc}</td>
-            <td>${(g.arr/g.tc).toFixed(3)}</td><td>${(g.bc/g.mj).toFixed(2)}</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>`).join('');
+        const body = document.getElementById('goalieBody');
+        if(!body) return;
+        body.innerHTML = '';
+        goaliesData.forEach(g => {
+            g.pct = (g.tc > 0 ? g.arr / g.tc : 0).toFixed(3);
+            g.gaa = (g.mj > 0 ? g.bc / g.mj : 0).toFixed(2);
+            g.pts = g.b + g.a;
+        });
+        goaliesData.sort((a, b) => b[currentGoalieSort] - a[currentGoalieSort]);
+        goaliesData.forEach((g, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${g.name}</span><span class="team-tag">${g.team}</span></div></td>
+                <td class="${currentGoalieSort === 'mj' ? 'active-sort' : ''}">${g.mj}</td>
+                <td class="${currentGoalieSort === 'v' ? 'active-sort' : ''}">${g.v}</td>
+                <td class="${currentGoalieSort === 'd' ? 'active-sort' : ''}">${g.d}</td>
+                <td class="${currentGoalieSort === 'tc' ? 'active-sort' : ''}">${g.tc}</td>
+                <td class="${currentGoalieSort === 'arr' ? 'active-sort' : ''}">${g.arr}</td>
+                <td class="${currentGoalieSort === 'bc' ? 'active-sort' : ''}">${g.bc}</td>
+                <td class="${currentGoalieSort === 'pct' ? 'active-sort' : ''}">${g.pct}</td>
+                <td class="${currentGoalieSort === 'gaa' ? 'active-sort' : ''}">${g.gaa}</td>
+                <td class="${currentGoalieSort === 'bl' ? 'active-sort' : ''}">${g.bl}</td>
+                <td class="${currentGoalieSort === 'b' ? 'active-sort' : ''}">${g.b}</td>
+                <td class="${currentGoalieSort === 'a' ? 'active-sort' : ''}">${g.a}</td>
+                <td class="${currentGoalieSort === 'pts' ? 'active-sort' : ''}">${g.pts}</td>
+                <td class="${currentGoalieSort === 'pun' ? 'active-sort' : ''}">${g.pun}</td>
+            </tr>`;
+        });
     }
 
+    function sortStats(c) { currentSort = c; document.querySelectorAll('#statsTable th').forEach(th => th.classList.remove('active-sort')); event.currentTarget.classList.add('active-sort'); renderPlayers(); }
+    function sortGoalies(c) { currentGoalieSort = c; document.querySelectorAll('#goalieTable th').forEach(th => th.classList.remove('active-sort')); event.currentTarget.classList.add('active-sort'); renderGoalies(); }
+
     function searchPlayer() {
-        const q = document.getElementById('search').value.toLowerCase();
-        const results = playersData.filter(p => p.name.toLowerCase().includes(q));
-        document.getElementById('playersList').style.display = q.length > 1 ? 'block' : 'none';
-        document.getElementById('searchResultsBody').innerHTML = results.map(p => `<tr><td>${p.name}</td><td>${p.pts} PTS</td><td><button onclick="closeModal()">Voir</button></td></tr>`).join('');
+        const query = document.getElementById('search').value.toLowerCase();
+        const listDiv = document.getElementById('playersList');
+        const resultsBody = document.getElementById('searchResultsBody');
+        if(query.length < 2) { listDiv.style.display = 'none'; return; }
+        const filtered = playersData.filter(p => p.name.toLowerCase().includes(query));
+        resultsBody.innerHTML = '';
+        if(filtered.length > 0) {
+            listDiv.style.display = 'block';
+            filtered.forEach(p => {
+                resultsBody.innerHTML += `<tr><td><div class="team-cell"><span>${p.name}</span><span class="team-tag">${p.team}</span></div></td><td>${p.pts} PTS</td><td><button onclick="closeModal()">Voir</button></td></tr>`;
+            });
+        }
     }
 
     function toggleMenu() { const m = document.getElementById('accountMenu'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+    window.onclick = function(event) { if (!event.target.matches('.account-btn')) { document.getElementById('accountMenu').style.display = 'none'; } };
     function closeModal() { document.getElementById('playerModal').style.display = 'none'; }
 </script>
 </body>
