@@ -106,6 +106,30 @@
             appearance: none !important;
         }
 
+        .schedule-controls input::placeholder {
+            color: white !important;
+            opacity: 1 !important;
+        }
+
+        .custom-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-icon::after { content: "▼"; font-size: 12px; }
+        .date-icon::after { content: "📅"; font-size: 16px; }
+
+        .select-icon::after, .date-icon::after {
+            color: var(--blue);
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
         /* --- TABLEAUX ÉLITE --- */
         .elite-container {
             background: rgba(15, 47, 71, 0.4);
@@ -132,7 +156,11 @@
             border-bottom: 2px solid rgba(79, 195, 247, 0.1);
         }
 
+        .sortable { cursor: pointer; transition: 0.3s; }
+        .sortable:hover { color: white; background: rgba(79, 195, 247, 0.1); border-radius: 5px; }
+
         .elite-table tbody tr { background: rgba(255, 255, 255, 0.03); transition: 0.3s; }
+        .elite-table tbody tr:hover { background: rgba(79, 195, 247, 0.12); transform: scale(1.005); }
         .elite-table td { padding: 15px; font-weight: 600; font-size: 15px; }
 
         .rank-col { font-family: 'Bebas Neue'; font-size: 22px; color: rgba(255,255,255,0.4); width: 60px; }
@@ -145,6 +173,7 @@
             background: rgba(79, 195, 247, 0.15) !important;
             color: var(--blue) !important;
             font-weight: 800 !important;
+            text-shadow: 0 0 8px rgba(79, 195, 247, 0.5);
         }
 
         .diff-pos { color: #4caf50; }
@@ -171,49 +200,6 @@
         .match-status { text-align: right; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 15px; }
         .time { display: block; font-size: 18px; font-weight: 700; color: var(--blue); }
         .location { display: block; font-size: 11px; text-transform: uppercase; opacity: 0.6; }
-
-        /* --- STYLE RÈGLEMENTS (ACCORDION) --- */
-        .rule-chapter {
-            background: rgba(15, 47, 71, 0.4);
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(79, 195, 247, 0.15);
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        .rule-header {
-            padding: 18px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Bebas Neue';
-            font-size: 24px;
-            letter-spacing: 1px;
-            color: white;
-        }
-        .rule-header:hover { background: rgba(79, 195, 247, 0.1); color: var(--blue); }
-        .rule-content {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease-in-out;
-            background: rgba(0,0,0,0.25);
-            font-size: 15px;
-            line-height: 1.8;
-            color: #cfd8dc;
-        }
-        .rule-chapter.active .rule-content {
-            max-height: 1500px; 
-            padding: 25px;
-        }
-        .rule-chapter.active .rule-header {
-            color: var(--blue);
-            background: rgba(79, 195, 247, 0.05);
-            border-bottom: 1px solid rgba(79, 195, 247, 0.2);
-        }
-        .rule-content strong { color: var(--blue); }
-        .rule-content ul { padding-left: 20px; }
 
         /* --- COMPTE ET MODAL --- */
         .account-btn { position: absolute; top: 20px; right: 20px; background: rgba(15, 47, 71, 0.9); padding: 10px 15px; border-radius: 25px; color: var(--blue); cursor: pointer; z-index: 3; border: 1px solid rgba(192,192,192,0.4); }
@@ -280,23 +266,31 @@
 
 <section id="schedule">
     <h2>Calendrier & Résultats</h2>
+
     <div class="schedule-controls">
         <div class="control-group">
             <label>Équipe</label>
-            <select id="teamFilter" onchange="filterSchedule()">
-                <option value="all">Toutes les équipes</option>
-                <option value="Thrashers">Thrashers</option>
-                <option value="Canadiens">Canadiens</option>
-                <option value="Vikings">Vikings</option>
-                <option value="Ducks">Ducks</option>
-            </select>
+            <div class="custom-input-wrapper select-icon">
+                <select id="teamFilter" onchange="filterSchedule()">
+                    <option value="all">Toutes les équipes</option>
+                    <option value="Thrashers">Thrashers</option>
+                    <option value="Canadiens">Canadiens</option>
+                    <option value="Vikings">Vikings</option>
+                    <option value="Ducks">Ducks</option>
+                </select>
+            </div>
         </div>
         <div class="control-group">
             <label>Date précise</label>
-            <input type="text" id="dateFilter" placeholder="Choisir une date">
+            <div class="custom-input-wrapper date-icon">
+                <input type="text" id="dateFilter" placeholder="Choisir une date">
+            </div>
         </div>
     </div>
-    <div id="calendarContainer"></div>
+
+    <div id="calendarContainer">
+        <!-- Rempli dynamiquement par JS -->
+    </div>
 </section>
 
 <section id="standings">
@@ -308,30 +302,59 @@
                     <th>Rang</th><th style="text-align:left;">Équipe</th><th>MJ</th><th>VR</th><th>VP</th><th>DP</th><th>D</th><th class="pts-cell">PTS</th><th>BP</th><th>BC</th><th>DIFF</th>
                 </tr>
             </thead>
-            <tbody id="standingsBody"></tbody>
+            <tbody id="standingsBody">
+                <!-- Rempli dynamiquement par JS -->
+            </tbody>
         </table>
     </div>
 </section>
 
 <section id="stats">
     <h2>Statistiques individuelles</h2>
+    
+    <!-- PATINEURS -->
     <h3>Joueurs</h3>
+    <p style="font-size: 11px; color: var(--blue); margin-bottom: 10px;">* Cliquez sur les colonnes pour trier.</p>
     <div class="elite-container">
         <table class="elite-table" id="statsTable">
             <thead>
                 <tr>
-                    <th>Rang</th><th style="text-align:left;">Joueur</th><th>MJ</th><th>B</th><th>P</th><th class="active-sort">PTS</th><th>DIFF</th><th>PUN</th><th>MOY</th>
+                    <th>Rang</th>
+                    <th style="text-align:left;">Joueur</th>
+                    <th class="sortable" onclick="sortStats('mj')">MJ</th>
+                    <th class="sortable" onclick="sortStats('b')">B</th>
+                    <th class="sortable" onclick="sortStats('p')">P</th>
+                    <th class="sortable active-sort" onclick="sortStats('pts')">PTS</th>
+                    <th class="sortable" onclick="sortStats('diff')">DIFF</th>
+                    <th class="sortable" onclick="sortStats('pun')">PUN</th>
+                    <th class="sortable" onclick="sortStats('moy')">MOY</th>
                 </tr>
             </thead>
             <tbody id="statsBody"></tbody>
         </table>
     </div>
+
+    <!-- GARDIENS -->
     <h3>Gardiens de buts</h3>
     <div class="elite-container">
         <table class="elite-table" id="goalieTable">
             <thead>
                 <tr>
-                    <th>Rang</th><th style="text-align:left;">Joueur</th><th>MJ</th><th class="active-sort">V</th><th>D</th><th>TC</th><th>Arr</th><th>BC</th><th>%Arr</th><th>Moy</th><th>BL</th>
+                    <th>Rang</th>
+                    <th style="text-align:left;">Joueur</th>
+                    <th class="sortable" onclick="sortGoalies('mj')">MJ</th>
+                    <th class="sortable active-sort" onclick="sortGoalies('v')">V</th>
+                    <th class="sortable" onclick="sortGoalies('d')">D</th>
+                    <th class="sortable" onclick="sortGoalies('tc')">TC</th>
+                    <th class="sortable" onclick="sortGoalies('arr')">Arr</th>
+                    <th class="sortable" onclick="sortGoalies('bc')">BC</th>
+                    <th class="sortable" onclick="sortGoalies('pct')">%Arr</th>
+                    <th class="sortable" onclick="sortGoalies('gaa')">Moy</th>
+                    <th class="sortable" onclick="sortGoalies('bl')">BL</th>
+                    <th class="sortable" onclick="sortGoalies('b')">B</th>
+                    <th class="sortable" onclick="sortGoalies('a')">A</th>
+                    <th class="sortable" onclick="sortGoalies('pts')">PTS</th>
+                    <th class="sortable" onclick="sortGoalies('pun')">PUN</th>
                 </tr>
             </thead>
             <tbody id="goalieBody"></tbody>
@@ -350,64 +373,9 @@
 </section>
 
 <section id="rules">
-    <h2>Livre des Règlements</h2>
-    <p style="color:var(--blue); margin-bottom:20px; font-weight: 600;">Sélectionnez une section pour consulter les règlements officiels de Dynamo Sport.</p>
-    
-    <div id="rulesAccordion">
-        <!-- CHAPITRE 1 & 2 -->
-        <div class="rule-chapter">
-            <div class="rule-header" onclick="toggleRule(this)">1 & 2. CODE DE CONDUITE ET ÉQUIPEMENT <span>+</span></div>
-            <div class="rule-content">
-                <p><strong>1.1 Respect des lieux :</strong> Priorité absolue. Dommages matériels interdits sous peine de suspension immédiate et frais de réparation.</p>
-                <p><strong>2.1 Équipement obligatoire :</strong> Casque (glace ou balle), jambières hockey balle, gants adaptés et chaussures de sport fermées. Punition mineure (2 min) pour équipement manquant.</p>
-                <p><strong>2.3 Gardien de but :</strong> Équipement complet obligatoire. Interdiction de produits glissants sur les jambières sous peine de punition mineure et retrait de la surface.</p>
-            </div>
-        </div>
-
-        <!-- CHAPITRE 3, 4, 5 -->
-        <div class="rule-chapter">
-            <div class="rule-header" onclick="toggleRule(this)">3, 4 & 5. DURÉE, RETARDS ET FORFAITS <span>+</span></div>
-            <div class="rule-content">
-                <p><strong>3.1 Durée :</strong> Échauffement 5 min. 3 périodes de 15 min. Pauses de 2 min. Temps d'arrêt : 1 min par équipe par match.</p>
-                <p><strong>4.1 Retards :</strong> Punition mineure si non-prêt. 4 min après 5 min de retard. Forfait après 10 min.</p>
-                <p><strong>5.1 Forfait :</strong> Score officiel de 3-0 pour l'équipe non-fautive.</p>
-            </div>
-        </div>
-
-        <!-- CHAPITRE 6 & 7 -->
-        <div class="rule-chapter">
-            <div class="rule-header" onclick="toggleRule(this)">6 & 7. POINTS ET BRIS D’ÉGALITÉ <span>+</span></div>
-            <div class="rule-content">
-                <p><strong>Barème de points :</strong><br>
-                - Victoire régulière : <strong>3 points</strong><br>
-                - Victoire Prol/Fusillade : <strong>2 points</strong><br>
-                - Défaite Prol/Fusillade : <strong>1 point</strong><br>
-                - Défaite régulière : <strong>0 point</strong></p>
-                <p><strong>Bris d'égalité :</strong> 1. Points, 2. Victoires régulières, 3. Défaites régulières, 4. Différentiel, 5. Total buts pour, 6. Total buts contre.</p>
-            </div>
-        </div>
-
-        <!-- CHAPITRE 8 & 9 (Général) -->
-        <div class="rule-chapter">
-            <div class="rule-header" onclick="toggleRule(this)">8 & 9. RÈGLES DE JEU GÉNÉRALES <span>+</span></div>
-            <div class="rule-content">
-                <p><strong>9.1 Dégagements :</strong> Interdit si la balle traverse toutes les lignes sans être touchée (sauf en désavantage numérique).</p>
-                <p><strong>9.3 Zone de transition (2m) :</strong> Le joueur sortant doit être à moins de 2 mètres de son banc avant l'entrée du remplaçant.</p>
-                <p><strong>9.5 Hauteur du bâton :</strong> Contact avec la balle au-dessus de la bande = arrêt de jeu immédiat.</p>
-                <p><strong>9.7 Décompte 5 secondes :</strong> Décompte officiel derrière le but. L'équipe doit faire progresser la balle hors de la zone restreinte sous 5 secondes.</p>
-                <p><strong>9.15 Glissades :</strong> Punition de 4 min si contact physique. Punition mineure (2 min) pour glissade dangereuse sans contact.</p>
-            </div>
-        </div>
-
-        <!-- CHAPITRE 10 & 11 (Prolongation) -->
-        <div class="rule-chapter">
-            <div class="rule-header" onclick="toggleRule(this)">10 & 11. PROLONGATION ET FUSILLADE <span>+</span></div>
-            <div class="rule-content">
-                <p><strong>10.1 Format :</strong> 5 minutes à 4 contre 4 (temps continu). Premier but marqué met fin au match (Mort subite).</p>
-                <p><strong>11.2 Fusillade :</strong> Séquence de 3 tireurs différents en alternance. Si égalité après 3 tireurs, passage en formule "mort subite" (un par équipe). Un même tireur peut être réutilisé uniquement en phase de mort subite.</p>
-            </div>
-        </div>
-    </div>
+    <h2>Règlements</h2>
+    <p>- Respect obligatoire envers les arbitres et les joueurs<br>- Format 4 contre 4<br>- Matchs de 2 périodes<br>- Aucun comportement antisportif toléré<br>- Les décisions de l’arbitre sont finales</p>
+    <p><em>Document complet à venir</em></p>
 </section>
 
 <section id="info">
@@ -428,22 +396,15 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 
 <script>
-    // --- DONNÉES CENTRALISÉES ---
+    // --- DONNÉES DES MATCHS (Centralisé pour tout le site) ---
     const matchesData = [
-        { id: 1, date: "2025-05-15", team1: "Thrashers", score1: 4, team2: "Canadiens", score2: 2, time: "19:30", location: "Princeville" },
-        { id: 2, date: "2025-05-16", team1: "Vikings", score1: 1, team2: "Thrashers", score2: 3, time: "20:45", location: "Princeville" },
-        { id: 3, date: "2025-05-17", team1: "Ducks", score1: 0, team2: "Canadiens", score2: 0, time: "18:15", location: "Princeville" }
+        { id: 1, date: "2025-05-15", team1: "Thrashers", score1: 4, team2: "Canadiens", score2: 2, time: "19:30", location: "Princeville", type: "Régulière" },
+        { id: 2, date: "2025-05-16", team1: "Vikings", score1: 1, team2: "Thrashers", score2: 3, time: "20:45", location: "Princeville", type: "Régulière" },
+        { id: 3, date: "2025-05-17", team1: "Ducks", score1: 0, team2: "Canadiens", score2: 0, time: "18:15", location: "Princeville", type: "Régulière" },
+        { id: 4, date: "2025-05-20", team1: "Canadiens", score1: 5, team2: "Vikings", score2: 4, time: "19:30", location: "Princeville", type: "Régulière" }
     ];
 
     const teamNames = ["Thrashers", "Canadiens", "Vikings", "Ducks"];
-
-    let playersData = [
-        {name: 'Gabriel Beauvillier', team: 'Thrashers', mj: 2, b: 5, p: 3, diff: 4, pun: 2},
-        {name: 'Marc Tremblay', team: 'Vikings', mj: 2, b: 3, p: 1, diff: 2, pun: 4},
-        {name: 'Luc Picard', team: 'Canadiens', mj: 2, b: 2, p: 4, diff: -1, pun: 0}
-    ];
-
-    let goaliesData = [{name: 'Jean-Luc Savard', team: 'Thrashers', mj: 2, v: 2, d: 0, tc: 45, arr: 41, bc: 4}];
 
     // --- INITIALISATION ---
     document.addEventListener('DOMContentLoaded', () => {
@@ -454,79 +415,209 @@
         renderGoalies();
     });
 
-    // LOGIQUE ACCORDION RÈGLEMENTS
-    function toggleRule(header) {
-        const chapter = header.parentElement;
-        const isActive = chapter.classList.contains('active');
-        document.querySelectorAll('.rule-chapter').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.rule-header span').forEach(s => s.innerText = '+');
-        if (!isActive) {
-            chapter.classList.add('active');
-            header.querySelector('span').innerText = '-';
-        }
-    }
-
-    // CALENDRIER
+    // --- LOGIQUE CALENDRIER ---
     function renderSchedule() {
         const container = document.getElementById('calendarContainer');
+        container.innerHTML = '';
         const months = ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
-        container.innerHTML = matchesData.map(m => {
-            const d = new Date(m.date + "T00:00:00");
-            return `<div class="match-card" data-date="${m.date}" data-teams="${m.team1} ${m.team2}" onclick="showMatchDetails(${m.id})">
-                <div class="match-date-badge"><span class="date-day">${d.getDate()}</span><span class="date-month">${months[d.getMonth()]}</span></div>
-                <div class="team-info">${m.team1}</div><div class="score-box">${m.score1} - ${m.score2}</div><div class="team-info">${m.team2}</div>
-                <div class="match-status"><span class="time">${m.time}</span><span class="location">${m.location}</span></div>
-            </div>`;
-        }).join('');
+
+        matchesData.forEach(m => {
+            const dateObj = new Date(m.date + "T00:00:00");
+            const day = dateObj.getDate();
+            const month = months[dateObj.getMonth()];
+            
+            container.innerHTML += `
+                <div class="match-card" data-date="${m.date}" data-teams="${m.team1} ${m.team2}" onclick="showMatchDetails(${m.id})">
+                    <div class="match-date-badge"><span class="date-day">${day}</span><span class="date-month">${month}</span></div>
+                    <div class="team-info">${m.team1}</div>
+                    <div class="score-box">${m.score1} - ${m.score2}</div>
+                    <div class="team-info">${m.team2}</div>
+                    <div class="match-status"><span class="time">${m.time}</span><span class="location">${m.location}</span></div>
+                </div>`;
+        });
     }
 
     function filterSchedule() {
         const team = document.getElementById('teamFilter').value.toLowerCase();
         const date = document.getElementById('dateFilter').value; 
-        document.querySelectorAll('.match-card').forEach(c => {
-            const showT = (team === 'all' || c.getAttribute('data-teams').toLowerCase().includes(team));
-            const showD = (!date || date === c.getAttribute('data-date'));
+        const cards = document.querySelectorAll('.match-card');
+        cards.forEach(c => {
+            const cTeams = c.getAttribute('data-teams').toLowerCase();
+            const cDate = c.getAttribute('data-date');
+            const showT = (team === 'all' || cTeams.includes(team));
+            const showD = (!date || date === cDate);
             c.style.display = (showT && showD) ? 'grid' : 'none';
         });
     }
 
-    // CLASSEMENT
-    function calculateStandings() {
-        let st = teamNames.map(name => ({ name, mj: 0, vr: 0, vp: 0, dp: 0, d: 0, pts: 0, bp: 0, bc: 0, diff: 0 }));
-        matchesData.forEach(m => {
-            let t1 = st.find(t => t.name === m.team1), t2 = st.find(t => t.name === m.team2);
-            if (m.score1 === 0 && m.score2 === 0) return;
-            t1.mj++; t2.mj++; t1.bp += m.score1; t1.bc += m.score2; t2.bp += m.score2; t2.bc += m.score1;
-            if (m.score1 > m.score2) { t1.vr++; t1.pts += 3; t2.d++; } else if (m.score2 > m.score1) { t2.vr++; t2.pts += 3; t1.d++; }
-            t1.diff = t1.bp - t1.bc; t2.diff = t2.bp - t2.bc;
-        });
-        st.sort((a, b) => b.pts - a.pts || b.diff - a.diff);
-        document.getElementById('standingsBody').innerHTML = st.map((t, i) => `<tr><td class="rank-col">${i+1}</td><td><div class="team-cell">${t.name}</div></td><td>${t.mj}</td><td>${t.vr}</td><td>${t.vp}</td><td>${t.dp}</td><td>${t.d}</td><td class="pts-cell">${t.pts}</td><td>${t.bp}</td><td>${t.bc}</td><td class="${t.diff>=0?'diff-pos':'diff-neg'}">${t.diff>0?'+':''}${t.diff}</td></tr>`).join('');
+    function showMatchDetails(id) {
+        const match = matchesData.find(m => m.id === id);
+        document.getElementById('modalTitle').innerText = "Détails du match";
+        document.getElementById('modalBody').innerHTML = `
+            <p><strong>Type :</strong> Saison ${match.type}</p>
+            <p style="font-size:24px; font-weight:bold;">${match.team1} ${match.score1} - ${match.score2} ${match.team2}</p>
+            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1);">
+            <p>Le sommaire complet des buteurs sera bientôt disponible.</p>
+        `;
+        document.getElementById('playerModal').style.display = 'flex';
     }
 
-    // STATS
-    function renderPlayers() {
-        playersData.forEach(p => p.pts = p.b + p.p);
-        playersData.sort((a, b) => b.pts - a.pts);
-        document.getElementById('statsBody').innerHTML = playersData.map((p, i) => `<tr><td class="rank-col">${i+1}</td><td><div class="team-cell">${p.name} <span class="team-tag">${p.team}</span></div></td><td>${p.mj}</td><td>${p.b}</td><td>${p.p}</td><td class="active-sort">${p.pts}</td><td>${p.diff}</td><td>${p.pun}</td><td>${(p.pts/p.mj).toFixed(2)}</td></tr>`).join('');
+    // --- LOGIQUE CLASSEMENT AUTOMATIQUE ---
+    function calculateStandings() {
+        let standings = teamNames.map(name => ({ name, mj: 0, vr: 0, vp: 0, dp: 0, d: 0, pts: 0, bp: 0, bc: 0, diff: 0 }));
+
+        matchesData.forEach(m => {
+            let t1 = standings.find(t => t.name === m.team1);
+            let t2 = standings.find(t => t.name === m.team2);
+
+            if (m.score1 === 0 && m.score2 === 0) return; // Match non joué
+
+            t1.mj++; t2.mj++;
+            t1.bp += m.score1; t1.bc += m.score2;
+            t2.bp += m.score2; t2.bc += m.score1;
+
+            if (m.score1 > m.score2) {
+                t1.vr++; t1.pts += 3; t2.d++;
+            } else if (m.score2 > m.score1) {
+                t2.vr++; t2.pts += 3; t1.d++;
+            } else {
+                // Logique simplifiée pour l'exemple (Nul = 1pt chacun)
+                t1.pts += 1; t2.pts += 1;
+            }
+            t1.diff = t1.bp - t1.bc;
+            t2.diff = t2.bp - t2.bc;
+        });
+
+        standings.sort((a, b) => b.pts - a.pts || b.diff - a.diff);
+        
+        const body = document.getElementById('standingsBody');
+        body.innerHTML = '';
+        standings.forEach((t, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${t.name}</span></div></td>
+                <td>${t.mj}</td><td>${t.vr}</td><td>${t.vp}</td><td>${t.dp}</td><td>${t.d}</td>
+                <td class="pts-cell">${t.pts}</td><td>${t.bp}</td><td>${t.bc}</td>
+                <td class="${t.diff >= 0 ? 'diff-pos' : 'diff-neg'}">${t.diff > 0 ? '+' : ''}${t.diff}</td>
+            </tr>`;
+        });
     }
+
+    // --- LOGIQUE PATINEURS ---
+    let playersData = [
+        {name: 'Gabriel Beauvillier', team: 'Thrashers', mj: 2, b: 5, p: 3, diff: 4, pun: 2},
+        {name: 'Marc Tremblay', team: 'Vikings', mj: 2, b: 3, p: 1, diff: 2, pun: 4},
+        {name: 'Jean-Sébastien Roy', team: 'Ducks', mj: 2, b: 1, p: 0, diff: -3, pun: 0},
+        {name: 'Luc Picard', team: 'Canadiens', mj: 2, b: 2, p: 4, diff: -1, pun: 0}
+    ];
+    let currentSort = 'pts';
+
+    function renderPlayers() {
+        const body = document.getElementById('statsBody');
+        if(!body) return;
+        body.innerHTML = '';
+        playersData.forEach(p => { p.pts = p.b + p.p; p.moy = (p.mj > 0 ? p.pts / p.mj : 0).toFixed(2); });
+        playersData.sort((a, b) => b[currentSort] - a[currentSort]);
+        playersData.forEach((p, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${p.name}</span><span class="team-tag">${p.team}</span></div></td>
+                <td class="${currentSort === 'mj' ? 'active-sort' : ''}">${p.mj}</td>
+                <td class="${currentSort === 'b' ? 'active-sort' : ''}">${p.b}</td>
+                <td class="${currentSort === 'p' ? 'active-sort' : ''}">${p.p}</td>
+                <td class="pts-cell ${currentSort === 'pts' ? 'active-sort' : ''}">${p.pts}</td>
+                <td class="${p.diff >= 0 ? 'diff-pos' : 'diff-neg'} ${currentSort === 'diff' ? 'active-sort' : ''}">${p.diff > 0 ? '+' : ''}${p.diff}</td>
+                <td class="${currentSort === 'pun' ? 'active-sort' : ''}">${p.pun}</td>
+                <td class="${currentSort === 'moy' ? 'active-sort' : ''}">${p.moy}</td>
+            </tr>`;
+        });
+    }
+
+    // --- LOGIQUE GARDIENS ---
+    let goaliesData = [
+        {name: 'Jean-Luc Savard', team: 'Thrashers', mj: 2, v: 2, d: 0, tc: 45, arr: 41, bc: 4, bl: 0, b: 0, a: 0, pun: 0},
+        {name: 'Martin Tremblay', team: 'Canadiens', mj: 2, v: 1, d: 1, tc: 38, arr: 32, bc: 6, bl: 0, b: 0, a: 1, pun: 2}
+    ];
+    let currentGoalieSort = 'v';
 
     function renderGoalies() {
-        document.getElementById('goalieBody').innerHTML = goaliesData.map((g, i) => `<tr><td class="rank-col">${i+1}</td><td><div class="team-cell">${g.name} <span class="team-tag">${g.team}</span></div></td><td>${g.mj}</td><td class="active-sort">${g.v}</td><td>${g.d}</td><td>${g.tc}</td><td>${g.arr}</td><td>${g.bc}</td><td>${(g.arr/g.tc).toFixed(3)}</td><td>${(g.bc/g.mj).toFixed(2)}</td><td>0</td></tr>`).join('');
+        const body = document.getElementById('goalieBody');
+        if(!body) return;
+        body.innerHTML = '';
+        goaliesData.forEach(g => {
+            g.pct = (g.tc > 0 ? g.arr / g.tc : 0).toFixed(3);
+            g.gaa = (g.mj > 0 ? g.bc / g.mj : 0).toFixed(2);
+            g.pts = g.b + g.a;
+        });
+        goaliesData.sort((a, b) => b[currentGoalieSort] - a[currentGoalieSort]);
+        goaliesData.forEach((g, i) => {
+            body.innerHTML += `<tr>
+                <td class="rank-col">${i + 1}</td>
+                <td><div class="team-cell"><span>${g.name}</span><span class="team-tag">${g.team}</span></div></td>
+                <td class="${currentGoalieSort === 'mj' ? 'active-sort' : ''}">${g.mj}</td>
+                <td class="${currentGoalieSort === 'v' ? 'active-sort' : ''}">${g.v}</td>
+                <td class="${currentGoalieSort === 'd' ? 'active-sort' : ''}">${g.d}</td>
+                <td class="${currentGoalieSort === 'tc' ? 'active-sort' : ''}">${g.tc}</td>
+                <td class="${currentGoalieSort === 'arr' ? 'active-sort' : ''}">${g.arr}</td>
+                <td class="${currentGoalieSort === 'bc' ? 'active-sort' : ''}">${g.bc}</td>
+                <td class="${currentGoalieSort === 'pct' ? 'active-sort' : ''}">${g.pct}</td>
+                <td class="${currentGoalieSort === 'gaa' ? 'active-sort' : ''}">${g.gaa}</td>
+                <td class="${currentGoalieSort === 'bl' ? 'active-sort' : ''}">${g.bl}</td>
+                <td class="${currentGoalieSort === 'b' ? 'active-sort' : ''}">${g.b}</td>
+                <td class="${currentGoalieSort === 'a' ? 'active-sort' : ''}">${g.a}</td>
+                <td class="${currentGoalieSort === 'pts' ? 'active-sort' : ''}">${g.pts}</td>
+                <td class="${currentGoalieSort === 'pun' ? 'active-sort' : ''}">${g.pun}</td>
+            </tr>`;
+        });
     }
 
-    // RECHERCHE
+    function sortStats(c) { currentSort = c; document.querySelectorAll('#statsTable th').forEach(th => th.classList.remove('active-sort')); event.currentTarget.classList.add('active-sort'); renderPlayers(); }
+    function sortGoalies(c) { currentGoalieSort = c; document.querySelectorAll('#goalieTable th').forEach(th => th.classList.remove('active-sort')); event.currentTarget.classList.add('active-sort'); renderGoalies(); }
+
+    // --- RECHERCHE JOUEUR ---
     function searchPlayer() {
-        const q = document.getElementById('search').value.toLowerCase();
-        const res = playersData.filter(p => p.name.toLowerCase().includes(q));
-        document.getElementById('playersList').style.display = q.length > 1 ? 'block' : 'none';
-        document.getElementById('searchResultsBody').innerHTML = res.map(p => `<tr><td>${p.name} (${p.team})</td><td>${p.pts} PTS</td><td><button onclick="closeModal()">Détails</button></td></tr>`).join('');
+        const query = document.getElementById('search').value.toLowerCase();
+        const listDiv = document.getElementById('playersList');
+        const resultsBody = document.getElementById('searchResultsBody');
+        
+        if(query.length < 2) { listDiv.style.display = 'none'; return; }
+        
+        const filtered = playersData.filter(p => p.name.toLowerCase().includes(query));
+        resultsBody.innerHTML = '';
+        
+        if(filtered.length > 0) {
+            listDiv.style.display = 'block';
+            filtered.forEach(p => {
+                resultsBody.innerHTML += `<tr>
+                    <td><div class="team-cell"><span>${p.name}</span><span class="team-tag">${p.team}</span></div></td>
+                    <td>${p.pts} PTS</td>
+                    <td><button onclick="viewPlayer('${p.name}')" style="background:var(--blue); border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-weight:bold;">Voir</button></td>
+                </tr>`;
+            });
+        } else {
+            resultsBody.innerHTML = '<tr><td colspan="3">Aucun joueur trouvé</td></tr>';
+        }
     }
 
-    // UI
+    function viewPlayer(name) {
+        const p = playersData.find(player => player.name === name);
+        document.getElementById('modalTitle').innerText = p.name;
+        document.getElementById('modalBody').innerHTML = `
+            <p>Équipe : <strong>${p.team}</strong></p>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:15px;">
+                <div class="score-box">B: ${p.b}</div>
+                <div class="score-box">P: ${p.p}</div>
+                <div class="score-box">PTS: ${p.pts}</div>
+                <div class="score-box">PUN: ${p.pun}</div>
+            </div>
+        `;
+        document.getElementById('playerModal').style.display = 'flex';
+    }
+
+    // --- MENUS & MODALS ---
     function toggleMenu() { const m = document.getElementById('accountMenu'); m.style.display = (m.style.display === 'block') ? 'none' : 'block'; }
+    window.onclick = function(event) { if (!event.target.matches('.account-btn')) { document.getElementById('accountMenu').style.display = 'none'; } };
     function closeModal() { document.getElementById('playerModal').style.display = 'none'; }
-    function showMatchDetails() { document.getElementById('modalTitle').innerText = "Détails Match"; document.getElementById('modalBody').innerHTML = "Données à venir..."; document.getElementById('playerModal').style.display = 'flex'; }
 </script>
 </body>
 </html>
